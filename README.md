@@ -14,7 +14,7 @@ conda env create -f cfg.yaml
 ```
 
 
-## EFT / proxy-tuning example
+## Experiments
 ``EFTPosthocGenerationMixin`` simplifies parallel decoding and distribution composition for multiple language models. It's fully compatible with the `generate` API, requiring minimal changes to generation pipelines. Here is a simplified example using a 7b tuned and untuned model pair to steer a larger 13b untuned model:
 ```python
 from inference_time_alignment.decoder import EFTPosthocGenerationMixin
