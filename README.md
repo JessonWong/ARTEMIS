@@ -1,2 +1,1 @@
-ARTEMIS: : Defending against Backdoor Attacks
-via Distribution Shift
+# ARTEMIS: Defending against Backdoor Attacks via Distribution Shift
