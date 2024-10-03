@@ -7,23 +7,10 @@ This repo includes:
 - The official implementation of current backdoor attacks and defenses based on [BackdoorBench](https://github.com/SCLBD/BackdoorBench) for comparing performance across different attack and defense methods.
 
 
-<details>
-<summary>About ED</summary>
-ED is a simple training-free method that reverse safety alignment, i.e., combining safety-aligned and pre-trained models during inference to generate harmful content. Please see paper for more details.
-<p align="center">
-    <img src="https://zhziszz.github.io/emulated-disalignment/static/images/illustration.png" width="93%"> <br>
-</p>
-</details>
-
 ## Installation
 
 ```bash
-conda create -n emulated-disalignment python=3.10
-conda activate emulated-disalignment
-pip install torch==2.1.0 --index-url https://download.pytorch.org/whl/cu118
-pip install -r requirements.txt
-# (optional) pip install flash-attn==2.5.8 --no-build-isolation
-# (optional) pip install bitsandbytes==0.42.0
+conda env create -f cfg.yaml
 ```
 
 
