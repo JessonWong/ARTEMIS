@@ -1,5 +1,5 @@
-# ARTEMIS: Defending against Backdoor Attacks via Distribution Shift
-ode release for [Emulated Disalignment: Safety Alignment for Large Language Models May Backfire!](https://arxiv.org/abs/2402.12343).
+# ARTEMIS
+Code release for [ARTEMIS: Defending against Backdoor Attacks via Distribution Shift](https://arxiv.org/abs/2402.12343).
 
 
 This repo includes:
