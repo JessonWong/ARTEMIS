@@ -17,30 +17,30 @@ python ./attack/blended.py --batch_size 512 --epochs 500 \
 --attack_label_trans all2all \
 --device cuda:1
 
-# # attack inputaware
-# python ./attack/inputaware.py --batch_size 512 --epochs 100 \
-# --yaml_path ../config/attack/prototype/cifar10.yaml \
-# --bd_yaml_path ../config/attack/inputaware/default.yaml \
-# --save_folder_name inputaware_attack_cifar10 \
-# --pratio 0.2
+# attack inputaware
+python ./attack/inputaware.py --batch_size 512 --epochs 100 \
+--yaml_path ../config/attack/prototype/cifar10.yaml \
+--bd_yaml_path ../config/attack/inputaware/default.yaml \
+--save_folder_name inputaware_attack_cifar10 \
+--pratio 0.2
 
-# # attack bpp
-# python ./attack/bpp.py --batch_size 512 --epochs 100 \
-# --yaml_path ../config/attack/prototype/cifar10.yaml \
-# --bd_yaml_path ../config/attack/bpp/default.yaml \
-# --save_folder_name bpp_attack_cifar10 \
-# --pratio 0.2
+# attack bpp
+python ./attack/bpp.py --batch_size 512 --epochs 100 \
+--yaml_path ../config/attack/prototype/cifar10.yaml \
+--bd_yaml_path ../config/attack/bpp/default.yaml \
+--save_folder_name bpp_attack_cifar10 \
+--pratio 0.2
 
-# # attack wanet
-# python ./attack/wanet.py --batch_size 512 --epochs 100 \
-# --yaml_path ../config/attack/prototype/cifar10.yaml \
-# --bd_yaml_path ../config/attack/wanet/default.yaml \
-# --save_folder_name wanet_attack_cifar10 \
-# --pratio 0.2 --device cuda:0
+# attack wanet
+python ./attack/wanet.py --batch_size 512 --epochs 100 \
+--yaml_path ../config/attack/prototype/cifar10.yaml \
+--bd_yaml_path ../config/attack/wanet/default.yaml \
+--save_folder_name wanet_attack_cifar10 \
+--pratio 0.2 --device cuda:0
 
-# # attack sig
-# python ./attack/sig.py --batch_size 512 --epochs 100 \
-# --yaml_path ../config/attack/prototype/cifar10.yaml \
-# --bd_yaml_path ../config/attack/sig/default.yaml \
-# --save_folder_name sig_cifar10 \
-# --pratio 0.2 --device cuda:0
+# attack sig
+python ./attack/sig.py --batch_size 512 --epochs 100 \
+--yaml_path ../config/attack/prototype/cifar10.yaml \
+--bd_yaml_path ../config/attack/sig/default.yaml \
+--save_folder_name sig_cifar10 \
+--pratio 0.2 --device cuda:0

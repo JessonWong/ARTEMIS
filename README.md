@@ -15,25 +15,9 @@ conda env create -f cfg.yaml
 
 
 ## Experiments
-To reproduce our results in paper, run following commands:
+To get poisoned models, you can download them directly from [there](https://cuhko365.sharepoint.com/sites/SDSbackdoorbench/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FSDSbackdoorbench%2FShared%20Documents%2Fbackdoorbench&p=true&ga=1), or train with the script:
 ```python
-from inference_time_alignment.decoder import EFTPosthocGenerationMixin
-
-chat_7b_model  = ... # Llama-2-7b-chat
-base_7b_model  = ... # Llama-2-7b
-base_13b_model = ... # Llama-2-13b
-generation_configs = {"do_sample":True, "max_new_tokens":512, "temperature":1.0}
-
-# logp_{eft} = logp_{base,13b} + 1.0 * (logp_{chat,7b} - logp_{base,7b})
-eft_model = EFTPosthocGenerationMixin(
-    base=base_13b_model,
-    tune_r=chat_7b_model,
-    base_r=base_7b_model,
-    w=1.0,
-)
-
-# use transformer generate api as is
-tokenized_output = eft_model.generate(**generation_configs) 
+bash attack.sh
 ```
 For a full working example, please refer to [scripts/examples/eft.py](https://github.com/ZHZisZZ/emulated-disalignment/tree/main/scripts/examples/eft.py).
 
