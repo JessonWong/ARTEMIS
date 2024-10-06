@@ -1,15 +1,13 @@
 import os.path
 import sys, logging
-
 sys.path.append('../')
 
 import numpy as np
 import torch
 import copy
-
+from copy import deepcopy
 from PIL import Image
 from PIL import ImageFile
-
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 from tqdm import tqdm
@@ -18,14 +16,12 @@ from typing import *
 from torchvision.transforms import ToPILImage
 from torchvision.datasets import DatasetFolder, ImageFolder
 
-
 class slice_iter(torch.utils.data.dataset.Dataset):
     '''iterate over a slice of the dataset'''
-
     def __init__(self,
-                 dataset,
-                 axis=0
-                 ):
+             dataset,
+             axis = 0
+         ):
         self.data = dataset
         self.axis = axis
 
@@ -36,10 +32,11 @@ class slice_iter(torch.utils.data.dataset.Dataset):
         return len(self.data)
 
 
+
 class x_iter(torch.utils.data.dataset.Dataset):
     def __init__(self,
-                 dataset
-                 ):
+             dataset
+         ):
         self.data = dataset
 
     def __getitem__(self, item):
@@ -49,11 +46,10 @@ class x_iter(torch.utils.data.dataset.Dataset):
     def __len__(self):
         return len(self.data)
 
-
 class y_iter(torch.utils.data.dataset.Dataset):
     def __init__(self,
-                 dataset
-                 ):
+             dataset
+         ):
         self.data = dataset
 
     def __getitem__(self, item):
@@ -71,7 +67,6 @@ def get_labels(given_dataset):
     else:
         logging.debug("Not DatasetFolder or ImageFolder, so iter through")
         return [label for img, label, *other_info in given_dataset]
-
 
 class dataset_wrapper_with_transform(torch.utils.data.Dataset):
     '''
@@ -92,8 +87,8 @@ class dataset_wrapper_with_transform(torch.utils.data.Dataset):
     def __getattr__(self, attr):
         # # https://github.com/python-babel/flask-babel/commit/8319a7f44f4a0b97298d20ad702f7618e6bdab6a
         # # https://stackoverflow.com/questions/47299243/recursionerror-when-python-copy-deepcopy
-        if attr == "__setstate__":
-            raise AttributeError(attr)
+        # if attr == "__setstate__":
+        #     raise AttributeError(attr)
         if attr in self.__dict__:
             return getattr(self, attr)
         return getattr(self.wrapped_dataset, attr)
@@ -108,14 +103,12 @@ class dataset_wrapper_with_transform(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.wrapped_dataset)
-
+    
     def __deepcopy__(self, memo):
-        # In copy.deepcopy, init() will not be called and some attr will not be initialized.
+        # In copy.deepcopy, init() will not be called and some attr will not be initialized. 
         # The getattr will be infinitely called in deepcopy process.
         # So, we need to manually deepcopy the wrapped dataset or raise error when "__setstate__" us called. Here we choose the first solution.
-        return dataset_wrapper_with_transform(copy.deepcopy(self.wrapped_dataset),
-                                              copy.deepcopy(self.wrap_img_transform),
-                                              copy.deepcopy(self.wrap_label_transform))
+        return dataset_wrapper_with_transform(copy.deepcopy(self.wrapped_dataset), copy.deepcopy(self.wrap_img_transform), copy.deepcopy(self.wrap_label_transform))
 
 
 class poisonedCLSDataContainer:
@@ -133,8 +126,7 @@ class poisonedCLSDataContainer:
             }
             where img, *other_info = value
     '''
-
-    def __init__(self, save_folder_path=None, save_file_format=".png"):
+    def __init__(self, save_folder_path=None, save_file_format = ".png"):
         self.save_folder_path = save_folder_path
         self.data_dict = {}
         self.save_file_format = save_file_format
@@ -142,9 +134,9 @@ class poisonedCLSDataContainer:
 
     def retrieve_state(self):
         return {
-            "save_folder_path": self.save_folder_path,
-            "data_dict": self.data_dict,
-            "save_file_format": self.save_file_format,
+            "save_folder_path":self.save_folder_path,
+            "data_dict":self.data_dict,
+            "save_file_format":self.save_file_format,
         }
 
     def set_state(self, state_file):
@@ -161,9 +153,9 @@ class poisonedCLSDataContainer:
 
             save_subfolder_path = f"{self.save_folder_path}/{relative_loc_to_save_folder_name}"
             if not (
-                    os.path.exists(save_subfolder_path)
-                    and
-                    os.path.isdir(save_subfolder_path)
+                os.path.exists(save_subfolder_path)
+                and
+                os.path.isdir(save_subfolder_path)
             ):
                 os.makedirs(save_subfolder_path)
 
@@ -171,8 +163,8 @@ class poisonedCLSDataContainer:
             img.save(file_path)
 
             self.data_dict[key] = {
-                "path": file_path,
-                "other_info": other_info,
+                    "path": file_path,
+                    "other_info": other_info,
             }
 
     def __getitem__(self, key):
@@ -180,20 +172,14 @@ class poisonedCLSDataContainer:
             return self.data_dict[key]
         else:
             file_path = self.data_dict[key]["path"]
-            # file_path = file_path.replace("-ori", "")
-            file_path = file_path.replace("\\", "/")
-            # file_path = "./" + file_path[file_path.index("record"):]
-            substr = file_path[file_path.index("record"):]
-            # file_path = "../" + substr[0:7] + "attack/" + substr[7:]  # for resnet
-            file_path = "../vit_model/" + substr
-            # file_path = "../BackdoorBench/record/sig_attack_cifar10/" + file_path[file_path.index("bd_test_dataset"):]
             other_info = self.data_dict[key]["other_info"]
-            img = Image.open(file_path)
-            return (img, *other_info)
+            img =  Image.open(file_path)
+            im = deepcopy(img)
+            img.close()
+            return (im, *other_info)
 
     def __len__(self):
         return len(self.data_dict)
-
 
 class prepro_cls_DatasetBD_v2(torch.utils.data.Dataset):
 
@@ -204,10 +190,10 @@ class prepro_cls_DatasetBD_v2(torch.utils.data.Dataset):
 
             bd_image_pre_transform: Optional[Callable] = None,
             bd_label_pre_transform: Optional[Callable] = None,
-            save_folder_path=None,
+            save_folder_path = None,
 
-            mode='attack',
-    ):
+            mode = 'attack',
+        ):
         '''
         This class require poisonedCLSDataContainer
 
@@ -240,8 +226,7 @@ class prepro_cls_DatasetBD_v2(torch.utils.data.Dataset):
         self.bd_image_pre_transform = bd_image_pre_transform
         self.bd_label_pre_transform = bd_label_pre_transform
 
-        self.save_folder_path = os.path.abspath(
-            save_folder_path) if save_folder_path is not None else save_folder_path  # since when we want to save this dataset, this may cause problem
+        self.save_folder_path = save_folder_path # since when we want to save this dataset, this may cause problem
 
         self.original_index_array = np.arange(len(full_dataset_without_transform))
 
@@ -283,7 +268,7 @@ class prepro_cls_DatasetBD_v2(torch.utils.data.Dataset):
         '''
 
         # we need to save the bd img, so we turn it into PIL
-        if (not isinstance(img, Image.Image)) and self.save_folder_path is not None:
+        if (not isinstance(img, Image.Image)) :
             if isinstance(img, np.ndarray):
                 img = img.astype(np.uint8)
             img = ToPILImage()(img)
@@ -317,17 +302,17 @@ class prepro_cls_DatasetBD_v2(torch.utils.data.Dataset):
             if self.getitem_all_switch:
                 # this is for the case that you want original targets, but you do not want change your testing process
                 return img, \
-                    original_target, \
-                    original_index, \
-                    poison_or_not, \
-                    label
+                       original_target, \
+                       original_index, \
+                       poison_or_not, \
+                       label
 
-            else:  # here should corresponding to the order in the bd trainer
+            else: # here should corresponding to the order in the bd trainer
                 return img, \
-                    label, \
-                    original_index, \
-                    poison_or_not, \
-                    original_target
+                       label, \
+                       original_index, \
+                       poison_or_not, \
+                       original_target
         else:
             return img, label
 
@@ -336,9 +321,9 @@ class prepro_cls_DatasetBD_v2(torch.utils.data.Dataset):
 
     def retrieve_state(self):
         return {
-            "bd_data_container": self.bd_data_container.retrieve_state(),
-            "getitem_all": self.getitem_all,
-            "getitem_all_switch": self.getitem_all_switch,
+            "bd_data_container" : self.bd_data_container.retrieve_state(),
+            "getitem_all":self.getitem_all,
+            "getitem_all_switch":self.getitem_all_switch,
             "original_index_array": self.original_index_array,
             "poison_indicator": self.poison_indicator,
             "save_folder_path": self.save_folder_path,
@@ -366,23 +351,20 @@ class prepro_cls_DatasetBD_v2(torch.utils.data.Dataset):
 
 class xy_iter(torch.utils.data.dataset.Dataset):
     def __init__(self,
-                 x: Sequence,
-                 y: Sequence,
-                 transform
-                 ):
+             x : Sequence,
+             y : Sequence,
+             transform
+         ):
         assert len(x) == len(y)
         self.data = x
         self.targets = y
         self.transform = transform
-
     def __getitem__(self, item):
         img = self.data[item]
         label = self.targets[item]
         if self.transform is not None:
             img = self.transform(img)
         return img, label
-
     def __len__(self):
         return len(self.targets)
-
 

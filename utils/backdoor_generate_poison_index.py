@@ -8,15 +8,7 @@ import random
 import numpy as np
 from typing import Callable, Union, List, Optional
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-# from utils.bd_label_transform.backdoor_label_transform import *
-=======
 from utils.bd_label_transform.backdoor_label_transform import *
->>>>>>> 071f1e1d42ccc8ea067d3d895e36870c0e83d098
-=======
-from utils.bd_label_transform.backdoor_label_transform import *
->>>>>>> 071f1e1d42ccc8ea067d3d895e36870c0e83d098
 
 def generate_single_target_attack_train_poison_index(
         targets:Union[np.ndarray, List],
@@ -31,7 +23,7 @@ def generate_single_target_attack_train_poison_index(
 
     :param targets: y array of clean dataset that tend to do poison
     :param tlabel: target label in backdoor attack
-
+/home/xuemeng/lzh/ARTEMIS/record/lf_attack_cifar10/bd_train_dataset/1/36028.png
     :param pratio: poison ratio, if the whole dataset size = 1
     :param p_num: poison data number, more precise
     need one of pratio and pnum
@@ -65,7 +57,7 @@ def generate_single_target_attack_train_poison_index(
                     non_zero_array = np.random.choice(np.where(targets == tlabel)[0], p_num, replace = False)
                     poison_index[list(non_zero_array)] = 1
                 else:
-                    non_zero_array = np.random.choice(np.where(targets == tlabel)[0], round(pratio * len(targets)), replace = False)
+                    non_zero_array = np.random.choice(np.where(targets == tlabel)[0], round(pratio * len(targets)), replace = True)
                     poison_index[list(non_zero_array)] = 1
     logging.info(f'poison num:{sum(poison_index)},real pratio:{sum(poison_index) / len(poison_index)}')
     if sum(poison_index) == 0:

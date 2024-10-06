@@ -84,3 +84,46 @@ If you use vit make sure you set the image size!
 2024-10-06:15:56:45 [INFO    ] [inputaware.py:421] Epoch 7 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
 2024-10-06:15:57:02 [INFO    ] [inputaware.py:730]  Eval:
 2024-10-06:15:57:04 [INFO    ] [inputaware.py:421] Epoch 8 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:15:57:20 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:15:57:22 [INFO    ] [inputaware.py:421] Epoch 9 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:15:57:39 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:15:57:41 [INFO    ] [inputaware.py:421] Epoch 10 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:15:57:57 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:15:57:59 [INFO    ] [inputaware.py:421] Epoch 11 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:15:58:16 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:15:58:18 [INFO    ] [inputaware.py:421] Epoch 12 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:15:58:34 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:15:58:36 [INFO    ] [inputaware.py:421] Epoch 13 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:15:58:53 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:15:58:55 [INFO    ] [inputaware.py:421] Epoch 14 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:15:59:12 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:15:59:13 [INFO    ] [inputaware.py:421] Epoch 15 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:15:59:30 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:15:59:32 [INFO    ] [inputaware.py:421] Epoch 16 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:15:59:49 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:15:59:51 [INFO    ] [inputaware.py:421] Epoch 17 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:16:00:07 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:16:00:09 [INFO    ] [inputaware.py:421] Epoch 18 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:16:00:26 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:16:00:28 [INFO    ] [inputaware.py:421] Epoch 19 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:16:00:44 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:16:00:46 [INFO    ] [inputaware.py:421] Epoch 20 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:16:01:03 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:16:01:05 [INFO    ] [inputaware.py:421] Epoch 21 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:16:01:21 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:16:01:23 [INFO    ] [inputaware.py:421] Epoch 22 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:16:01:40 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:16:01:42 [INFO    ] [inputaware.py:421] Epoch 23 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:16:01:58 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:16:02:00 [INFO    ] [inputaware.py:421] Epoch 24 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:16:02:17 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:16:02:19 [INFO    ] [inputaware.py:421] Epoch 25 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1  - lambda_norm: 100:
+2024-10-06:16:02:36 [INFO    ] [inputaware.py:730]  Eval:
+2024-10-06:16:02:37 [INFO    ] [inputaware.py:469] Epoch 26 - cifar10 - all2one | mask_density: 0.032 - lambda_div: 1:
+2024-10-06:16:02:37 [INFO    ] [inputaware.py:815]  Training:
+2024-10-06:16:02:51 [INFO    ] [inputaware.py:956] Compose(
+    Normalize(mean=[0.0, 0.0, 0.0], std=[4.048582995951417, 4.11522633744856, 3.8314176245210727])
+    Normalize(mean=[-0.4914, -0.4822, -0.4465], std=[1.0, 1.0, 1.0])
+)
+2024-10-06:16:02:51 [INFO    ] [bd_dataset_v2.py:141] save file format is .png
+2024-10-06:16:02:51 [INFO    ] [bd_dataset_v2.py:141] save file format is .png
