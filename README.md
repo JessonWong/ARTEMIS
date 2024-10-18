@@ -1,5 +1,5 @@
 # ARTEMIS
-Code release for [ARTEMIS: Defending against Backdoor Attacks via Distribution Shift]([https://ieeexplore.ieee.org/abstract/document/10702439/]).
+Code release for [ARTEMIS: Defending against Backdoor Attacks via Distribution Shift](https://ieeexplore.ieee.org/abstract/document/10702439/).
 
 
 This repo includes:
